@@ -26,7 +26,7 @@ namespace SalesWebMvc.Services
         {
 
             _context.Add(obj);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
         public async Task<Seller> FindByIdAsync(int id)
         {
@@ -41,7 +41,7 @@ namespace SalesWebMvc.Services
                 _context.Seller.Remove(obj);
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateException e)
+            catch (DbUpdateException )
             {
                 throw new IntegrityException("can't delete seller becaus he/she has sales");
             }
